@@ -22,7 +22,7 @@ int main(int argc, char **argv)
         connfd=accept(listenfd,(struct sockaddr *)NULL, NULL);
         if((pid=fork())==0)
         {
-            printf("in fork()\n");
+            printf("%d\n", getpid());
             close(listenfd);
             ticks=time(NULL);
             snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
