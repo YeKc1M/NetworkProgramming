@@ -9,8 +9,12 @@ void str_cli(FILE *fp, int sockfd)
     char sendline[MAXLINE],recvline[MAXLINE];
     while(fgets(sendline, MAXLINE, fp)!=NULL)
     {
+        printf("%d\n", &sendline);
         writen(sockfd, sendline, strlen(sendline));
+        printf("after writen\n");
     }
+    //scanf("%d",sendline);
+    //send(sockfd, sendline, MAXLINE, 0);
     if(Readline(sockfd, recvline, MAXLINE)==0)
     {
         printf("str_cli: server terminated prematurely\n");

@@ -11,12 +11,13 @@ void str_echo(int sockfd)
     printf("in echo\n");
     for(;;)
     {
-        //printf("in for\n");
+        printf("in for\n");
         if((n=Readline(sockfd, line, strlen(line)))==0)
         {
             printf("NULL\n");
             return ;
         }
+        //recv(sockfd, line, MAXLINE, MSG_WAITALL);
         printf(line);
         printf('\n');
         writen(sockfd, line ,n);
@@ -29,7 +30,7 @@ int main(int argc, char **argv)
     int listenfd, connfd;
     struct sockaddr_in servaddr;
     char buff[MAXLINE];
-    time_t ticks;
+    //time_t ticks;
     listenfd=socket(AF_INET, SOCK_STREAM, 0);
     memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family=AF_INET;
