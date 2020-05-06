@@ -9,18 +9,20 @@ void str_cli(FILE *fp, int sockfd)
     char sendline[MAXLINE],recvline[MAXLINE];
     while(fgets(sendline, MAXLINE, fp)!=NULL)
     {
-        printf("%d\n", &sendline);
+        //printf("%d\n", &sendline);
         writen(sockfd, sendline, strlen(sendline));
         printf("after writen\n");
+        if(Readline(sockfd, recvline, MAXLINE)==0)
+        {
+            printf("str_cli: server terminated prematurely\n");
+            exit(1);
+        }
+        fputs(recvline, stdout);
     }
     //scanf("%d",sendline);
     //send(sockfd, sendline, MAXLINE, 0);
-    if(Readline(sockfd, recvline, MAXLINE)==0)
-    {
-        printf("str_cli: server terminated prematurely\n");
-        exit(1);
-    }
-    fputs(recvline, stdout);
+    printf("after while\n");
+    
 }
 
 int main(int argc, char** argv)

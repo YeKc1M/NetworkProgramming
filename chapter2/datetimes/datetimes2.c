@@ -20,6 +20,7 @@ void str_echo(int sockfd)
         //recv(sockfd, line, MAXLINE, MSG_WAITALL);
         printf(line);
         printf('\n');
+        printf("before writen\n");
         writen(sockfd, line ,n);
     }
 }
@@ -28,7 +29,8 @@ int main(int argc, char **argv)
 {
     pid_t pid;
     int listenfd, connfd;
-    struct sockaddr_in servaddr;
+    socklen_t clilen;
+    struct sockaddr_in cliaddr, servaddr;
     char buff[MAXLINE];
     //time_t ticks;
     listenfd=socket(AF_INET, SOCK_STREAM, 0);
@@ -40,7 +42,8 @@ int main(int argc, char **argv)
     listen(listenfd, 1024);
     for(;;)
     {
-        connfd=accept(listenfd,(struct sockaddr *)NULL, NULL);
+        clilen=sizeof(cliaddr);
+        connfd=accept(listenfd,(struct sockaddr *)&cliaddr, &clilen);
         if((pid=fork())==0)
         {
             printf("%d\n", getpid());
