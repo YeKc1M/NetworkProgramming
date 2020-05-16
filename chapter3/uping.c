@@ -21,7 +21,7 @@ char recvpackets[PACKET_SIZE];
 int sockfd, datalen=56;
 int nsend=0, nreceived=0;
 struct sockaddr_in dest_addr;
-__pid_t pid;
+pid_t pid;
 struct sockaddr_in from;
 struct timeval tvrecv;
 
@@ -66,9 +66,9 @@ int main(int argc, char ** argv)
             perror("gethostbyname error");
             exit(1);
         }
-        memcpy((char *)&dest_addr.sin_addr, host->h_addr_list, host->h_length);
+        memcpy((char *)&dest_addr.sin_addr, host->h_addr, host->h_length);
     }
-    else memcpy((char *)&dest_addr.sin_addr, (char *)&inaddr, host->h_length);
+    else memcpy((char *)&dest_addr.sin_addr, (char *)&inaddr, sizeof(inaddr));
     pid=getpid();
     printf("PING %s(%s): %d bytes data in ICMP packets.\n", argv[1], inet_ntoa(dest_addr.sin_addr),datalen);
     send_packet();
@@ -142,6 +142,7 @@ void send_packet()
 
 void recv_packet()
 {
+    //printf("packets receiving\n");
     int n, fromlen;
     extern int errno;
     signal(SIGALRM, statistics);
