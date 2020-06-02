@@ -28,6 +28,12 @@ void testWlanAPI1()
     PWLAN_INTERFACE_INFO_LIST pIfList = NULL; //contain an array of NIC interface information(class PWLAN_INTERFACE_INFO)
     PWLAN_INTERFACE_INFO pIfInfo = NULL; //contain information about a wireless LAN interface
     //isState: WLAN_INTERFACE_STATE. value: wlan_interface_state_connected, wlan_interface_state_disconnected, wlan_interface_state_authenticating
+    
+    //variables for WlanGetAvailableNetworkList
+    PWLAN_AVAILABLE_NETWORK_LIST pBssList = NULL;
+    PWLAN_AVAILABLE_NETWORK pBssEntry = NULL;
+    int iRSSI = 0;
+
     printf_s("Check wireless LAN Interfaces\n");
     dwResult = WlanOpenHandle(dwMaxClient, NULL, &dwCurVersion, &hClient); // open a connection to the server
     if (dwResult != ERROR_SUCCESS)
@@ -91,7 +97,34 @@ void testWlanAPI1()
                 wprintf_s(L"Unknown state %ld\n", pIfInfo->isState);
                 break;
             }
+            wprintf_s(L"\nWifi Search\n");
+            dwResult = WlanGetAvailableNetworkList(hClient, &pIfInfo->InterfaceGuid, 0, NULL, &pBssList);
+            if (dwResult != ERROR_SUCCESS)
+            {
+                wprintf_s(L"WlanGetAvailableNetworkList failed with error: %u\n", dwResult);
+                dwRetVal = 1;
+            }
+            else
+            {
+                wprintf_s(L"WLAN_AVAILABLE_NETWORK_LIST for this interface\n");
+                wprintf_s(L"Num Entries: %lu\n", pBssList->dwNumberOfItems);
+                for (j = 0; j < pBssList->dwNumberOfItems; j++)
+                {
+                    pBssEntry = (_WLAN_AVAILABLE_NETWORK*)&pBssList->Network[j];
+                    wprintf_s(L"Prifile Name[%u]: %ws\n", j, pBssEntry->strProfileName);
+                    iRSSI = 0;
+                    if (pBssEntry->wlanSignalQuality == 0) iRSSI = -100;
+                    else if (pBssEntry->wlanSignalQuality == 100) iRSSI = -50;
+                    else iRSSI = -100 + (pBssEntry->wlanSignalQuality / 2);
+                    wprintf_s(L"Signal Quality[%u]:\t %u (RSSI: %i dBm)\n", j, pBssEntry->wlanSignalQuality, iRSSI);
+                }
+            }
         }
+    }
+    if (pBssList != NULL)
+    {
+        WlanFreeMemory(pBssList);
+        pBssList = NULL;
     }
     if (pIfList != NULL)
     {
