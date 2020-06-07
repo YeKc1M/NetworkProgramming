@@ -5,6 +5,7 @@
 #include <wlanapi.h>
 #include <objbase.h>
 #include <wtypes.h>
+#include <math.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -116,7 +117,8 @@ void testWlanAPI1()
                     if (pBssEntry->wlanSignalQuality == 0) iRSSI = -100;
                     else if (pBssEntry->wlanSignalQuality == 100) iRSSI = -50;
                     else iRSSI = -100 + (pBssEntry->wlanSignalQuality / 2);
-                    wprintf_s(L"Signal Quality[%u]:\t %u (RSSI: %i dBm)\n", j, pBssEntry->wlanSignalQuality, iRSSI);
+                    wprintf_s(L"Signal Quality[%u]:\t %u (RSSI: %i dBm) %lf\n", j, pBssEntry->wlanSignalQuality, iRSSI, -(iRSSI + 50.0) / 20.0);
+                    printf_s("%f\n", pow(10, -(iRSSI + 50.0) / 20.0));
                 }
             }
         }
@@ -137,6 +139,7 @@ int main()
 {
     //printf_s("hello world!\n");
     testWlanAPI1();
+    //printf_s("%lf", pow(10, 0.5));
     return 0;
 }
 

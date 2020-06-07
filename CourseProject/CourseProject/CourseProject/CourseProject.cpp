@@ -17,9 +17,10 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-int x[3] = { 300, 450, 600 };
-int y[3] = { 200, 420, 300 };
-int r[3] = { 200,200,200 };
+int x[3] = { 300, 350, 500 };
+int y[3] = { 200, 320, 250 };
+double r[3] = { 0,0,0 };
+double radius = 150;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -30,6 +31,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 在此处放置代码。
+    wifi_detect(r);
 
     // 初始化全局字符串
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -164,12 +166,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             SelectObject(hdc, hbrush);
             for (int i = 0; i < 3; i++)
             {
-                Ellipse(hdc, x[i] - r[i], y[i] - r[i], x[i] + r[i], y[i] + r[i]);
+                if (r[i] == 1)
+                {
+                    Ellipse(hdc, x[i] - radius, y[i] - radius, x[i] + radius, y[i] + radius);
+                }
+                else 
+                {
+                    Ellipse(hdc, x[i] - radius * r[i], y[i] - radius * r[i], x[i] + radius * r[i], y[i] + radius * r[i]);
+                    Ellipse(hdc, x[i] - radius * r[i] + 30, y[i] - radius * r[i] + 30, x[i] + radius * r[i] - 30, y[i] + radius * r[i] - 30);
+                }
+                //Ellipse(hdc, x[i] - r[i], y[i] - r[i], x[i] + r[i], y[i] + r[i]);
             }
             SelectObject(hdc, solidbrush);
             for (int i = 0; i < 3; i++)
             {
-                Ellipse(hdc, x[i] - 2, y[i] - 2, x[i] + 2, y[i] + 2);
+                Ellipse(hdc, x[i] - 3, y[i] - 3, x[i] + 3, y[i] + 3);
             }
             EndPaint(hWnd, &ps);
         }

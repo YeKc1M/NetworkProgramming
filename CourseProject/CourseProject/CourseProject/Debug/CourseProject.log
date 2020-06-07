@@ -1,2 +1,17 @@
 ﻿  CourseProject.cpp
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.h(26,24): warning C4101: “k”: 未引用的局部变量
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.h(26,21): warning C4101: “j”: 未引用的局部变量
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.h(26,18): warning C4101: “i”: 未引用的局部变量
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(171,84): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(171,69): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(171,54): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(171,39): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(175,105): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(175,83): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(175,61): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(175,39): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(176,136): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(176,109): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(176,82): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\CourseProject\CourseProject.cpp(176,55): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
   CourseProject.vcxproj -> D:\makangyao\study\GitHub\NetworkProgramming\CourseProject\CourseProject\Debug\CourseProject.exe
